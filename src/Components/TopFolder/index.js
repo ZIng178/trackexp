@@ -7,6 +7,7 @@ import {
   faChevronLeft,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const TopFold = () => {
   const [query, setQuery] = useState("");
@@ -27,22 +28,27 @@ const TopFold = () => {
               onChange={(e) => handleQuery(e)}
             />
           </div>
-          <div className="addButton">
-            <FontAwesomeIcon icon={faPlusCircle} />
-            <label> Add</label>
-          </div>
+          <Link to="/add-expense">
+            <div className="addButton">
+              <FontAwesomeIcon icon={faPlusCircle} />
+              <label> Add</label>
+            </div>
+          </Link>
         </div>
       ) : (
         <div className="addTopFold">
-          <div className="addTopFoldButton">
-            <FontAwesomeIcon icon={faChevronLeft} />
-            <label> Back</label>
-          </div>
-
-          <div className="addTopFoldButton">
-            <FontAwesomeIcon icon={faTimesCircle} />
-            <label> Cancel </label>
-          </div>
+          <Link to="/">
+            <div className="addTopFoldButton">
+              <FontAwesomeIcon icon={faChevronLeft} />
+              <label> Back</label>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="addTopFoldButton">
+              <FontAwesomeIcon icon={faTimesCircle} />
+              <label> Cancel </label>
+            </div>
+          </Link>
         </div>
       )}
     </div>
