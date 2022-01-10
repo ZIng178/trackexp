@@ -44,3 +44,15 @@
   padding: 0px 6px;
   color: white;
 }
+
+.addTopFold {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  font-size: 18px;
+}
+
+.addTopFoldButton {
+  display: flex;
+  align-items: center;
+}

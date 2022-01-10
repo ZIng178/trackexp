@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./topfold.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faPlusCircle,
+  faChevronLeft,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 const TopFold = () => {
   const [query, setQuery] = useState("");
@@ -28,7 +33,17 @@ const TopFold = () => {
           </div>
         </div>
       ) : (
-        <div>Other TopFold</div>
+        <div className="addTopFold">
+          <div className="addTopFoldButton">
+            <FontAwesomeIcon icon={faChevronLeft} />
+            <label> Back</label>
+          </div>
+
+          <div className="addTopFoldButton">
+            <FontAwesomeIcon icon={faTimesCircle} />
+            <label> Cancel </label>
+          </div>
+        </div>
       )}
     </div>
   );
