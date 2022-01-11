@@ -5,7 +5,8 @@ import "./expenseList.css";
 import { toast, ToastContainer } from "react-toastify";
 
 const ExpenseList = () => {
-  const { expenseList } = useSelector((state) => state.expenses);
+  const { expenseList, query } = useSelector((state) => state.expenses);
+  const filteredList = expenseList.filter((item) => item.title.includes(query));
   console.log("expenseList", expenseList);
 
   const successNotification = () => toast.success("expense deleted");
@@ -19,14 +20,14 @@ const ExpenseList = () => {
         newestOnTop={false}
         closeOnClick
       />
-      {expenseList.length ? (
-        expenseList.map((item) => (
+      {filteredList.length ? (
+        filteredList.map((item) => (
           <Card item={item} successNotification={successNotification} />
         ))
       ) : (
         <div className="emptystate">
           <img
-            src={require("../../assets/success.png")}
+            src={require("../../assets/nodata.png")}
             alt="emptylist"
             className="emptyimage"
           />

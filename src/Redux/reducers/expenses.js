@@ -1,12 +1,29 @@
-import { ADD_EXPENSE, DELETE_EXPENSE } from "../action-types/expenses";
+import {
+  ADD_EXPENSE,
+  DELETE_EXPENSE,
+  SEARCH_EXPENSE,
+} from "../action-types/expenses";
 
+const initialList = () => {
+  const list = localStorage.getItem("expenseList");
+  let expenses = [];
+  if (list) {
+    expenses = JSON.parse(list);
+  }
+  return expenses;
+};
 const initialState = {
-  expenseList: [],
+  expenseList: initialList(),
+  query: "",
 };
 
 export const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_EXPENSE: {
+      localStorage.setItem(
+        "expenseList",
+        JSON.stringify([...state.expenseList, action.data])
+      );
       return {
         ...state,
         expenseList: [...state.expenseList, action.data],
@@ -18,9 +35,18 @@ export const expenseReducer = (state = initialState, action) => {
       const updatedList = state.expenseList.filter(
         (item) => item.createdAt !== data.createdAt
       );
+      localStorage.setItem("expenseList", JSON.stringify(updatedList));
       return {
         ...state,
         expenseList: updatedList,
+      };
+    }
+
+    case SEARCH_EXPENSE: {
+      const { query } = action;
+      return {
+        ...state,
+        query: query,
       };
     }
     default:
