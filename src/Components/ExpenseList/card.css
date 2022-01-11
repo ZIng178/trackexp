@@ -1,7 +1,71 @@
 .card {
-  border: 1px solid red;
+  background-color: white;
+  padding: 12px;
+  margin: 2px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.card-image-conatiner {
-  border: 1px solid red;
+.cardImage {
+  height: 40px;
+  color: black;
+}
+
+.card-image-container img {
+  color: black;
+}
+
+.cardInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 12px;
+}
+
+.cardInfo p {
+  color: black;
+}
+
+.cardInfoTitle {
+  font-size: 20px;
+}
+
+.cardTime {
+  color: gray;
+}
+.cardRight {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.cardAmount {
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  margin-left: 16px;
+}
+
+.delete {
+  font-size: 16px;
+  color: black;
+}
+
+@media only screen and (max-width: 512px) {
+  .cardInfoTitle {
+    font-size: 18px;
+  }
+
+  .cardAmount {
+    font-size: 18px;
+  }
+
+  .cardImage {
+    height: 32px;
+  }
+  .cardTime {
+    font-size: 10px;
+  }
 }

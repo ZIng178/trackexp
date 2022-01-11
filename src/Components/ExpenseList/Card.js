@@ -3,9 +3,18 @@ import React from "react";
 import "./card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { deleteExpense } from "../../Redux/actions/expenses";
 
-const Card = ({ item }) => {
+const Card = ({ item, successNotification }) => {
   const time = moment(item.createdAt).fromNow();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteExpense(item));
+    successNotification();
+  };
+
   console.log("item", item);
   return (
     <>
@@ -21,13 +30,13 @@ const Card = ({ item }) => {
           />
         </div>
         <div className="cardInfo">
-          <p> {item.title}</p>
-          <p>{time}</p>
+          <p className="cardInfoTitle"> {item.title}</p>
+          <p className="cardTime">{time}</p>
         </div>
         <div className="cardRight">
           <label className="cardAmount">${item.amount}</label>
         </div>
-        <div className="delete">
+        <div className="delete" onClick={handleDelete}>
           <FontAwesomeIcon icon={faTrashAlt} />
         </div>
       </div>

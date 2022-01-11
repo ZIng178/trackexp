@@ -8,7 +8,7 @@ export const addExpense = (data) => {
   };
 };
 
-export const deleteExpense = () => {
+export const deleteExpense = (data) => {
   return {
     type: DELETE_EXPENSE,
     data: data,
