@@ -5,7 +5,9 @@ import { faCaretDown, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { categories } from "../../constants/addExpense";
 import { addExpense } from "../../Redux/actions/expenses";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ModalSuccess from "../AddForm/ModalSuccess";
 
 const AddForm = () => {
   const cat = categories;
@@ -13,6 +15,7 @@ const AddForm = () => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleTitle = (e) => {
@@ -34,7 +37,8 @@ const AddForm = () => {
   };
   const handleSubmit = () => {
     if (title === "" || amount === "" || !category) {
-      console.log("No data");
+      const notify = () => toast("Please enter Valid data");
+      notify();
       return;
     }
 
@@ -46,18 +50,11 @@ const AddForm = () => {
     };
 
     dispatch(addExpense(data));
+    setModalOpen(true);
   };
   return (
     <>
       <div className="addForm">
-        <ToastContainer
-          postion="bottom-left"
-          autoClose={1500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closedOnClick
-        />
-
         <div className="formItem">
           <label> Title</label>
           <input
@@ -69,19 +66,20 @@ const AddForm = () => {
         <div className="formItem">
           <label> Amount $</label>
           <input
+            className="amount-input"
             value={amount}
             placeholder="Enter Amount"
             onChange={(e) => handleAmount(e)}
           />
         </div>
-        <div className="catergoryContainer">
+        <div className="categoryContainer">
           <div className="category">
             <div
               className="category-dropdown"
               onClick={() => setCategoryIsOpen(!categoryIsopen)}
             >
-              <label> Cateogry </label>
-              <FontAwesomeIcon icon={faCaretDown} />
+              <label> {category ? category.title : "Category"} </label>
+              <FontAwesomeIcon icon={faCaretDown} className="dropdownicon" />
             </div>
             {categoryIsopen && (
               <div className="categoriesContainer">
@@ -92,8 +90,12 @@ const AddForm = () => {
                     key={category.id}
                     onClick={() => handleCategory(category)}
                   >
-                    <label> {category ? category.title : "Category"}</label>
-                    <img src={category.icon} alt={category.title} />
+                    <label> {category.title}</label>
+                    <img
+                      className="category-image"
+                      src={category.icon}
+                      alt={category.title}
+                    />
                   </div>
                 ))}
               </div>
@@ -105,6 +107,14 @@ const AddForm = () => {
               <FontAwesomeIcon icon={faPaperPlane} />
             </div>
           </div>
+          <ToastContainer
+            position="bottom-left"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+          />
+          <ModalSuccess modalOpen={modalOpen} setModalOpen={setModalOpen} />
         </div>
       </div>
     </>

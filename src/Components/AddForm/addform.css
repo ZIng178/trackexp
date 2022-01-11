@@ -1,0 +1,111 @@
+.addForm {
+  border-radius: 10px;
+  background: linear-gradient(145deg, #380556, #420666);
+  box-shadow: 41px 41px 53px #30054a, -41px -41px 53px #4c0774;
+  margin: 6px 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 60vh;
+}
+
+.formItem {
+  margin: 12px 0px;
+  width: 70%;
+  padding: 4px;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.formItem label {
+  background-color: black;
+  padding: 2px 12px;
+  border-radius: 0px 4px 0px 4px;
+}
+
+.formItem input {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  width: 70%;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.category {
+  position: relative;
+  width: 40%;
+}
+
+.category-dropdown {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  color: black;
+  align-items: center;
+  margin: 13px 10px;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.dropdownicon {
+  display: flex;
+  align-items: center;
+}
+
+.categoriesContainer {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+  background: white;
+}
+
+.category-item {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0px;
+  cursor: pointer;
+  color: black;
+}
+
+.category-image {
+  height: 32px;
+  margin-right: 20px;
+}
+
+.addFormButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addFormButton div {
+  display: flex;
+  border: 1px solid black;
+  padding: 2px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+  .formItem {
+    width: 100%;
+  }
+
+  .formItem input {
+    width: 70%;
+  }
+  .amount-input {
+    width: 50% !important;
+  }
+
+  .category {
+    width: 80%;
+  }
+}
